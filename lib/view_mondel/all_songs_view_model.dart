@@ -235,13 +235,6 @@ class AllSongsViewModel extends GetxController {
   // État observable pour la lecture
   final RxBool isPlaying = false.obs;
 
-  // Méthode pour définir la chanson actuelle
-  void setCurrentSong(Map<String, dynamic> song) {
-    currentSong.value = song;
-    isPlaying.value = true;
-    update();
-  }
-
   // Méthode pour basculer entre lecture/pause
   void togglePlayPause() {
     isPlaying.value = !isPlaying.value;
@@ -252,6 +245,33 @@ class AllSongsViewModel extends GetxController {
   void clearPlayer() {
     currentSong.value = null;
     isPlaying.value = false;
+    update();
+  }
+
+  // État pour la progression
+  final RxDouble currentPosition = 0.0.obs;
+  final RxDouble totalDuration = 0.0.obs;
+
+  // Méthode pour initialiser la durée
+  void initSongDuration() {
+    final durationStr = currentSong.value?["duration"] ?? "0";
+    totalDuration.value = double.tryParse(durationStr) ?? 0.0;
+    currentPosition.value = 0.0;
+  }
+
+  // Méthode pour formater la durée
+  String formatDuration(double seconds) {
+    return Duration(seconds: seconds.toInt())
+        .toString()
+        .split('.')[0]
+        .substring(2);
+  }
+
+  // Mettre à jour quand une chanson est sélectionnée
+  void setCurrentSong(Map<String, dynamic> song) {
+    currentSong.value = song;
+    isPlaying.value = true;
+    initSongDuration();
     update();
   }
 
