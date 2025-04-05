@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../audio_helpers/player_invoke.dart';
 import '../../common_widget/all_song_row.dart';
 import '../../common_widget/mini_player.dart';
 import '../../view_mondel/all_songs_view_model.dart';
-import 'main-player-view.dart';
 
 
 class AllSongsView extends StatefulWidget {
