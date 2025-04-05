@@ -65,7 +65,7 @@ class AccueilPage extends StatelessWidget {
                     unselectedLabelColor: Colors.white.withOpacity(0.7),
                     labelColor: Colors.white,
                     tabs: [
-                      Tab(child: Text('Chansons')),
+                      Tab(child: Text('Chansons u')),
                       Tab(child: Text('Album')),
                       Tab(child: Text('Mixtape')),
                       Tab(child: Text('Ep')),
